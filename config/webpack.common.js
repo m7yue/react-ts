@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+// 想在配置文件中使用环境变量，必须使用cross-env NODE_ENV=production先设置好环境变量
 const devMode = process.env.NODE_ENV !== 'production'; // true 开发环境 false 生产环境
 
 module.exports = {
