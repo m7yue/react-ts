@@ -1,17 +1,8 @@
 import { fetchUserInfo } from '@/redux/actions/user';
 
-interface HeaderProps {
-  userName: string;
-  wordsNumber: number;
-  fetchUserInfo?: Function;
-}
+import IState from '../../redux/types/state'
 
-interface StateProps  {
-  userName: string;
-  wordsNumber: number;
-}
-
-function Header (props: HeaderProps): JSX.Element {
+function Counter (props: CounterProps): JSX.Element {
   const { userName, wordsNumber, fetchUserInfo } = props;
   UseEffect(() => {
     fetchUserInfo();
@@ -25,7 +16,7 @@ function Header (props: HeaderProps): JSX.Element {
     </div>
   );
 }
-const mapStateToProps = (state): StateProps => {
+const mapStateToProps = (state: IState): StateProps => {
   const { novel, user } = state;
   const { wordsNumber } = novel;
   const { userInfo: { userName } } = user;
@@ -38,4 +29,16 @@ const mapDispatchToProps = (dispatch: Function): object => ({
 export default ReduxConnect(
   mapStateToProps,
   mapDispatchToProps,
-)(Header);
+)(Counter);
+
+
+interface CounterProps {
+  userName: string;
+  wordsNumber: number;
+  fetchUserInfo?: Function;
+}
+
+interface StateProps  {
+  userName: string;
+  wordsNumber: number;
+}

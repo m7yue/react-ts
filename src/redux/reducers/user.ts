@@ -1,25 +1,18 @@
 import { GET_USER_INFO } from '@/redux/actionTypes/user';
+import { UserState } from '../types/user'
+
 const initialState = {
-  userInfo: {},
+  userInfo: {
+    userName: '7yue'
+  },
 };
 
-interface Action {
-  type: string;
-  payload: ResUserInfo;
-}
-interface ResUserInfo {
-  user_name?: string;
-}
-
-interface UserState {
-  userInfo: {};
-}
-
 export default function user (state = initialState, action: Action): UserState {
+  console.log(action, 'user')
   const { type, payload = {} } = action;
-  const { user_name  } = payload;
+  const { userName  } = payload;
   let userInfo = {
-    userName: user_name,
+    userName: userName,
   };
   if (type === GET_USER_INFO) {
     return {
@@ -28,4 +21,12 @@ export default function user (state = initialState, action: Action): UserState {
     };
   }
   return state;
+}
+
+interface Action {
+  type: string;
+  payload: ResUserInfo;
+}
+interface ResUserInfo {
+  userName?: string;
 }

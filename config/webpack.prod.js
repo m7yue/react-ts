@@ -11,7 +11,7 @@ module.exports = smp.wrap(merge(common, {
   mode: 'production', //mode为production的时候，Webpack会将process.env.NODE_ENV设置为production。并且自动配置了terser-webpack-plugin，这个插件利用terser过滤掉js中多余的内容，包括去掉js中的注释和空格。
   devtool: 'source-map',
   output: {
-    publicPath: '/', 
+    publicPath: './', 
   },
   // stats: 'errors-warnings',// 设置只打印错误信息和警告信息。
 /*   plugins: [

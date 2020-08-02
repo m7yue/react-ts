@@ -1,7 +1,8 @@
 import { ADD_NOVEL_WORD, SUBTRACT_NOVEL_WORD } from '@/redux/actionTypes/novel';
+import NovelState from '../types/novel'
 
-const initialState = {
-  wordsNumber: 0,
+const initialState: NovelState = {
+  wordsNumber: 0
 };
 
 interface Action {
@@ -9,11 +10,8 @@ interface Action {
   payload: number;
 }
 
-interface NovelState {
-  wordsNumber: number;
-}
-
 export default function changeWordsNumber (state = initialState, action: Action): NovelState {
+  console.log(action, 'novel')
   let { wordsNumber } = state;  
   const { type, payload } = action;
   switch (true) {
@@ -26,6 +24,6 @@ export default function changeWordsNumber (state = initialState, action: Action)
   }
   return {
     ...state,
-    wordsNumber,
+    wordsNumber
   };
 }

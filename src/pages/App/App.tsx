@@ -1,4 +1,5 @@
-import Header from '@/components/Header/Header';
+import Header from '@/components/Counter/Counter';
+import NavHeader from '@/components/NavHeader/NavHeader';
 import routes from '@/router/index';
 
 import './app.scss';
@@ -13,13 +14,9 @@ import {
 export default function Home(): JSX.Element {
   return (
     <div>
-      <Header/>
       <Router>
-        <nav>
-          <Link to="/" className="nav-item">首页</Link>
-          <Link to="/novels" className="nav-item">小说</Link>
-          <Link to="/authors" className="nav-item">作者</Link>
-        </nav>
+        <NavHeader/>
+        <Header/>
         <Switch>
           {routes.map((route, index) => (
             <RouteWithSubRoutes key={index} {...route} />
