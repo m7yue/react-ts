@@ -7,7 +7,7 @@
     "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.prod.js",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./config/webpack.dev.js",
     "build:dev": "cross-env NODE_ENV=development webpack --config ./config/webpack.dev.js",
-    "analysis": "cross-env NODE_ENV=production webpack --config ./config/webpack.prod.js  --profile --json > stats.json && webpack-bundle-analyzer stats.json dist/"
+    "build:analyzer": "cross-env NODE_ENV=production ANALYZER=true webpack --config ./config/webpack.prod.js"
   },
   "keywords": [],
   "author": "",

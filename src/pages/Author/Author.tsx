@@ -1,4 +1,4 @@
-export default function Author(): JSX.Element {
+const Author: React.FC = () => {
   const authorsArr = ['一号作者', '二号作者'];
   return (
     <ul>
@@ -8,3 +8,5 @@ export default function Author(): JSX.Element {
     </ul>
   );
 }
+
+export default Author

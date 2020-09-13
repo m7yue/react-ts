@@ -7,7 +7,7 @@ const initialState = {
   },
 };
 
-export default function user (state = initialState, action: Action): UserState {
+export default function user (state = initialState, action: IAction): UserState {
   console.log(action, 'user')
   const { type, payload = {} } = action;
   const { userName  } = payload;
@@ -23,7 +23,7 @@ export default function user (state = initialState, action: Action): UserState {
   return state;
 }
 
-interface Action {
+interface IAction {
   type: string;
   payload: ResUserInfo;
 }

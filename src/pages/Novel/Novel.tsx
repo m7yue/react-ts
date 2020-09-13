@@ -1,4 +1,4 @@
-export default function Novel(): JSX.Element {
+const Novel: React.FC = () => {
   const novelsArr = ['一号小说', '二号小说'];
   return (
     <div>
@@ -10,3 +10,4 @@ export default function Novel(): JSX.Element {
     </div>
   );
 }
+export default Novel

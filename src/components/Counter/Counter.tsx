@@ -2,7 +2,7 @@ import { fetchUserInfo } from '@/redux/actions/user';
 
 import IState from '../../redux/types/state'
 
-function Counter (props: CounterProps): JSX.Element {
+const Counter: React.FC<CounterProps> = props => {
   const { userName, wordsNumber, fetchUserInfo } = props;
   UseEffect(() => {
     fetchUserInfo();
@@ -16,6 +16,7 @@ function Counter (props: CounterProps): JSX.Element {
     </div>
   );
 }
+
 const mapStateToProps = (state: IState): StateProps => {
   const { novel, user } = state;
   const { wordsNumber } = novel;

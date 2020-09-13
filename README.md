@@ -63,7 +63,7 @@
 
   #### 引入图片
   > `npm i --save-dev file-loader`
-  - `MiniCssExtractPlugin` - 将import、require、url()等引入的文件解析为一个路径，然后再将该路径下的文件放到output目录下，不光是图片文件，像字体文件等也可以使用file-loader来处理。
+  - `file-loader` - 将import、require、url()等引入的文件解析为一个路径，然后再将该路径下的文件放到output目录下，不光是图片文件，像字体文件等也可以使用file-loader来处理。
 
   #### 使用 babel
   >babel 的作用是将代码转换为在浏览器上能正常运行的代码。其实上文中已经使用babel来解析JSX和TypeScript了。但是解析过JSX和TypeScript之后得到的JavaScript可能依然无法在某些浏览器上正常运行，所以需要使用@babel/preset-env，@babel/preset-env根据设置的目标环境找出所需的插件，并将插件列表传给babel，这样只需配置好目标环境，其他的babel会进行处理。

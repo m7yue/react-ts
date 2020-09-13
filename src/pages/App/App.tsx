@@ -11,7 +11,7 @@ import {
   Link
 } from "react-router-dom";
 
-export default function Home(): JSX.Element {
+export default () => {
   return (
     <div>
       <Router>
@@ -26,13 +26,15 @@ export default function Home(): JSX.Element {
     </div>
   );
 }
+
+
 interface RouteType {
   path: string;
   component: Function;
   routes?: object;
 }
 
-function RouteWithSubRoutes(route: RouteType) {
+const RouteWithSubRoutes: React.FC<RouteType> = route => {
   return (
     <Route
       path={route.path}
@@ -46,3 +48,4 @@ function RouteWithSubRoutes(route: RouteType) {
     />
   );
 }
+

@@ -3,12 +3,7 @@ import { addNovelWord, subtractNovelWord } from '@/redux/actions/novel';
 import myImage from '@/assets/images/yue.jpg';
 import './home.scss';
 
-interface HomeProps {
-  addWordsNumber: Function;
-  substructWordsNumber: Function;
-}
-
-function Home(props: HomeProps) {
+const Home: React.FC<HomeProps> = props => {
   const { addWordsNumber, substructWordsNumber } = props;
   const handleAddWordsNumber = (): void => {
     addWordsNumber(1);
@@ -25,6 +20,7 @@ function Home(props: HomeProps) {
     </div>
   );
 }
+
 const mapDispatchToProps = (dispatch: Function ): object => ({
   addWordsNumber: (number): void => dispatch(addNovelWord(number)),
   substructWordsNumber: (number): void => dispatch(subtractNovelWord(number)),
@@ -34,3 +30,8 @@ export default ReduxConnect(
   null,
   mapDispatchToProps,
 )(Home);
+
+interface HomeProps {
+  addWordsNumber: Function;
+  substructWordsNumber: Function;
+}

@@ -10,9 +10,8 @@ import {
   Link
 } from "react-router-dom";
 
-function NavHeader(props): JSX.Element {
+const NavHeader:React.FC<StateProps & DispatchProps> = props => {
   const { activeIndex, activeNavChange } = props;
-  console.log(activeIndex)
 
   return (
     <div className="nav-header">
@@ -22,11 +21,12 @@ function NavHeader(props): JSX.Element {
     </div>
   );
 }
+
 const mapStateToProps = (state: IState): StateProps => {
   const { activeNav: {activeIndex} } = state;
   return { activeIndex };
 }
-const mapDispatchToProps = (dispatch: Function ): object => ({
+const mapDispatchToProps = (dispatch: Function ): DispatchProps => ({
   activeNavChange: (number): void => dispatch(activeNavChange(number))
 })
 
@@ -38,4 +38,8 @@ export default ReduxConnect(
 
 interface StateProps  {
   activeIndex: number;
+}
+
+interface DispatchProps {
+  activeNavChange: (number) => void
 }
