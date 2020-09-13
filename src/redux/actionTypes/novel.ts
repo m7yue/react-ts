@@ -1,2 +1,0 @@
-export const ADD_NOVEL_WORD = 'ADD_NOVEL_WORD';
-export const SUBTRACT_NOVEL_WORD = 'SUBTRACT_NOVEL_WORD';

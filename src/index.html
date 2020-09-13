@@ -8,5 +8,86 @@
 </head>
 <body>
   <div id="root"></div>
+  <div id="app-comment"></div>
+  <div id="portals"></div>
+
+  <script>
+    (function (win) {
+      // html根元素
+      var HTML_ELEMENT = document.documentElement || document.body;
+      // 屏幕宽度
+      var SCREEN_WIDTH = 0;
+      // 标准fontSize计算值
+      var BASE_FONT_SIZE = 0;
+      // 处理后的fontSize计算值
+      var REAL_BASE_FONT_SIZE = 0;
+
+      /**
+      * 修复异常的fontSize代码
+      */
+      var fix = function () {
+        var ua = navigator.userAgent;
+        var isIOS = /(iPhone|iPad|iPod)/.test(ua);
+        // 非苹果设备，均进行检测
+        if (!isIOS) {
+          var div = win.document.createElement('div');
+          div.style.width = 400 / 12 +'rem';
+          win.document.body.appendChild(div);
+          win.setTimeout(function () {
+            var getWidth = parseFloat(win.getComputedStyle(div).width);
+            if (getWidth > SCREEN_WIDTH) {
+              // 此时是出问题的情况
+              var ratio = getWidth / SCREEN_WIDTH;
+              REAL_BASE_FONT_SIZE = (BASE_FONT_SIZE / ratio).toFixed(4);
+              HTML_ELEMENT.style.fontSize = REAL_BASE_FONT_SIZE + 'px';
+            }
+            div.remove();
+          }, 100);
+        }
+      };
+
+      /**
+      * 调整根元素fontSize
+      */
+      var setBaseFontSize = function () {
+        var boundary = 600
+        // 获取屏幕宽度
+        SCREEN_WIDTH = HTML_ELEMENT.clientWidth || window.innerWidth;
+          if (SCREEN_WIDTH > boundary) {
+          SCREEN_WIDTH = boundary
+        }
+        // 将屏幕分成10份，获取每一份宽度
+        //- BASE_FONT_SIZE = SCREEN_WIDTH / 10;
+        BASE_FONT_SIZE =  SCREEN_WIDTH / (400 / 12);
+        // 写入html元素fontSize
+        HTML_ELEMENT.style.fontSize = BASE_FONT_SIZE + 'px';
+        fix();
+      };
+
+      /**
+      *手机旋转控制
+      */
+      var tid;
+      if (win.onorientationchange) {
+        win.onorientationchange = function () {
+          //- window.requestAnimationFrame(setBaseFontSize)
+          clearTimeout(tid);
+          tid = setTimeout(function () {
+              setBaseFontSize();
+          }, 100);
+        }
+      } else {
+        win.onresize = function () {
+          //- window.requestAnimationFrame(setBaseFontSize)
+          clearTimeout(tid);
+          tid = setTimeout(function () {
+              setBaseFontSize();
+          }, 100);
+        };
+        document.addEventListener('DOMContentLoaded', setBaseFontSize())
+      }
+      setBaseFontSize();
+    })(window)
+  </script>
 </body>
 </html>
