@@ -6,19 +6,12 @@ import NavHeader from "@/components/NavHeader/NavHeader"
 import routes from "@/router/index"
 
 import "./App.scss"
-import Modal from "./components/Modal"
 
 export default () => {
   return (
-    <div>
+    <div className="app">
       <Router>
         <NavHeader />
-        <Modal> 
-          <div style={{background:'red'}}>aaaaaaaa</div>
-        </Modal>
-        <Modal>
-          <div style={{background:'yellow'}}>bbbbbbbbbb</div>
-        </Modal>
         <Counter />
         <Switch>
           {routes.map((route, index) => (

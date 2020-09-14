@@ -5,9 +5,7 @@ import './modal.scss'
 
 const portals = document.getElementById('portals')
 
-const Modal: React.FC = ({ children }) => {
-  const [close, setClose] = useState<boolean>(false)
-
+const Modal: React.FC<IModalProps> = ({ children, onClose }) => {
   const el = useRef(document.createElement('div'))
   const modal = el.current
   modal.className = 'modal'
@@ -37,22 +35,24 @@ const Modal: React.FC = ({ children }) => {
   }
 
   const handleClose = () => {
-    portals.removeChild(modal)
-    setClose(true)
+    onClose()
     looseBody()
   }
 
   const closeBtnFixedBttom = (comp, handleClose) => {
     return (
       <>
-        {comp}
-        <div className="close-btn" onClick={ handleClose }></div>
+        <div className="modal-content">
+          {comp}
+          <div className="close-btn" onClick={ handleClose }></div>
+        </div>
       </>
     )
   }
 
   useEffect(() => {
     portals.appendChild(modal)
+
     fixedBody()
 
     return () => {
@@ -61,7 +61,12 @@ const Modal: React.FC = ({ children }) => {
     }
   }, [])
 
-  return close ? null : ReactDOM.createPortal(closeBtnFixedBttom(children, handleClose), modal)
+  return ReactDOM.createPortal(closeBtnFixedBttom(children, handleClose), modal)
+}
+
+interface IModalProps {
+  children:React.ReactNode
+  onClose:Function
 }
 
 
